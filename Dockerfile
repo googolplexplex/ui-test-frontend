@@ -1,4 +1,15 @@
-# use the nginx base image
-FROM nginx:latest
+FROM node:latest
 
-# Download a static HTML 
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+ENV PORT=8080
+
+EXPOSE 8080
+
+CMD ["npm", "start"]
